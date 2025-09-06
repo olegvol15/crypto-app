@@ -1,8 +1,10 @@
-import { Layout, Select, Space, Button, Modal, Drawer } from 'antd';
+import { Layout, Select, Space, Button, Modal, Drawer, Tooltip, Segmented } from 'antd';
 import { useCrypto } from '../../context/crypto-context';
 import { useState, useEffect } from 'react';
 import CoinInfoModal from '../CoinInfoModal';
 import AddAssetForm from '../AddAssetForm';
+import { useTheme } from '../../context/theme-context';
+import { SunFilled, MoonFilled, LaptopOutlined } from '@ant-design/icons';
 
 const headerStyle = {
   width: '100%',
@@ -20,6 +22,7 @@ function Header() {
   const [modal, setModal] = useState(false);
   const [drawer, setDrawer] = useState(false);
   const {crypto} = useCrypto();
+  const {theme, setTheme} = useTheme();
 
   useEffect(() => {
     const keypress = (e) => {
@@ -35,6 +38,12 @@ function Header() {
     setCoin(crypto.find(coin => coin.id === value));
     setModal(true);
   }
+
+  const themeOptions = [
+    { label: <Tooltip title="Light"><SunFilled /></Tooltip>, value: 'light' },
+    { label: <Tooltip title="Dark"><MoonFilled /></Tooltip>, value: 'dark' },
+    { label: <Tooltip title="System"><LaptopOutlined /></Tooltip>, value: 'system' },
+  ];
 
   return (
     <Layout.Header style={headerStyle}>
@@ -55,6 +64,15 @@ function Header() {
           </Space>
         )}
       />
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <Segmented
+          value={theme}
+          onChange={setTheme}
+          options={themeOptions}
+          size="large"
+        />
+      </div>
 
       <Button type="primary" onClick={() => setDrawer(true)}>Add Asset</Button>
 
