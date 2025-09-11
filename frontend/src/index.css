@@ -3,3 +3,18 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+:root[data-theme='light'] {
+  --chart-bg: #ffffff;
+  --chart-text: #1f2328;
+}
+:root[data-theme='dark'] {
+  --chart-bg: #0f1c26;
+  --chart-text: #e6e9ee;
+}
+
+/* example usage in a chart container */
+.chart-container {
+  background: var(--chart-bg);
+  color: var(--chart-text);
+}

@@ -1,18 +1,23 @@
-import { useState } from 'react'
-import './App.css'
-import {CryptoContextProvider} from './context/crypto-context';
+import { Routes, Route } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
-import ThemeProvider from './context/theme-context';
+import ProtectedRoute from './routes/ProtectedRoute';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
-function App() {
+export default function App() {
   return (
-    <ThemeProvider>
-      <CryptoContextProvider>
-        <AppLayout />
-      </CryptoContextProvider>
-    </ThemeProvider>
-    
-  )
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
+  );
 }
 
-export default App
