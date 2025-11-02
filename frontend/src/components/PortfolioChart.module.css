@@ -1,0 +1,19 @@
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  width: 100%;
+  max-width: 520px;
+  height: 280px;
+}
+
+@media (min-width: 640px) {
+  .box { max-width: 640px; height: 320px; }
+}
+
+@media (min-width: 1024px) {
+  .box { max-width: 720px; height: 380px; }
+}

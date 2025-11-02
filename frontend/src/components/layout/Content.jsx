@@ -2,32 +2,38 @@ import { Layout, Typography } from 'antd';
 import { useCrypto } from '../../context/crypto-context';
 import PortfolioChart from '../PortfolioChart';
 import AssetsTable from '../AssetsTable';
+import s from './Content.module.css';
 
-const contentStyle = {
-  textAlign: 'center',
-  minHeight: 'calc(100vh - 60px)',
-  color: '#fff',
-  backgroundColor: '#001529',
-};
 function Content() {
-  const {assets, crypto} = useCrypto();
+  const { assets, crypto } = useCrypto();
 
   const cryptoPriceMap = crypto.reduce((acc, coin) => {
     acc[coin.id] = coin.price;
     return acc;
-  }, {})
+  }, {});
+
+  const total = assets
+    .map((asset) => asset.amount * (cryptoPriceMap[asset.id] || 0))
+    .reduce((acc, v) => acc + v, 0)
+    .toFixed(2);
+
   return (
-    <Layout.Content style={contentStyle}>
-      <Typography.Title level={3} style={{textAlign: 'left', color: '#fff'}}>Portfolio: {assets.map(asset => {
-        return asset.amount * cryptoPriceMap[asset.id]
-      }).reduce((acc, value) => acc += value, 0).toFixed(2)}$</Typography.Title>
+    <Layout.Content className={s.content}>
+      <div className={s.container}>
+        <Typography.Title level={3} className={s.title}>
+          Portfolio: {total}$
+        </Typography.Title>
 
-      <PortfolioChart />
-      <AssetsTable />
+        <div className={s.section}>
+          <PortfolioChart />
+        </div>
+
+        <div className={s.sectionTable}>
+          <AssetsTable />
+        </div>
+      </div>
     </Layout.Content>
-
-    
-  )
+  );
 }
 
-export default Content
+export default Content;

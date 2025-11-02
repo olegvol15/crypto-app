@@ -1,0 +1,21 @@
+.row {
+  gap: 10px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.title {
+  margin: 0 !important;
+  line-height: 1.1 !important;
+}
+
+@media (max-width: 639px) {
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+}

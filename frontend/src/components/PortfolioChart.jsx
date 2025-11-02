@@ -1,18 +1,19 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useCrypto } from '../context/crypto-context';
+import s from './PortfolioChart.module.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PortfolioChart() {
-  const {assets} = useCrypto();
+  const { assets } = useCrypto();
 
   const data = {
-    labels: assets.map(asset => asset.name),
+    labels: assets.map((a) => a.name ?? a.id),
     datasets: [
       {
         label: '$',
-        data: assets.map(asset => asset.totalAmount),
+        data: assets.map((a) => a.totalAmount),
         backgroundColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
@@ -21,16 +22,23 @@ function PortfolioChart() {
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',
         ],
-        
       },
     ],
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+  };
+
   return (
-    <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem', height: 400}}>
-      <Pie data={data} />
+    <div className={s.wrap}>
+      <div className={s.box}>
+        <Pie data={data} options={options} />
+      </div>
     </div>
-  )
+  );
 }
 
-export default PortfolioChart
+export default PortfolioChart;

@@ -1,0 +1,35 @@
+.content {
+  min-height: calc(100vh - 60px);
+  background-color: transparent;
+  color: #fff;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 12px 12px 24px;
+  max-width: 1200px;
+}
+
+.title {
+  color: #fff !important;
+  margin: 0 0 10px 0 !important;
+  font-size: clamp(18px, 5.2vw, 28px) !important;
+  line-height: 1.2 !important;
+}
+
+.section {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.sectionTable {
+  width: 100%;
+}
+
+.panel {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 12px;
+}
+

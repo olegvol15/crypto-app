@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
+import './styles/GlobalLayoutFixes.module.css';
+
 
 import ThemeProvider from './context/theme-context.jsx';  // NOTE: named import
 import { AuthProvider } from './context/auth-context.jsx';     // from the auth step

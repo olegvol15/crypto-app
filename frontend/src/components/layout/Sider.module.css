@@ -1,0 +1,29 @@
+.sider {
+  padding: 12px;
+  flex: 1 1 100%;
+  max-width: 100%;
+  background: transparent;
+}
+
+.card {
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (min-width: 768px) {
+  .sider { flex: 0 0 260px; max-width: 260px; }
+}
+
